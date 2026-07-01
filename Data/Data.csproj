@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContactos.cs" />
+    <Compile Include="DataLogin.cs" />
     <Compile Include="DataMediosContacto.cs" />
     <Compile Include="DataTiposContacto.cs" />
     <Compile Include="DataUsuarios.cs" />

@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ContactosController.cs" />
     <Compile Include="Controllers\MediosContactoController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -153,6 +154,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\MediosContacto\MediosContacto.cshtml" />
     <Content Include="Views\Contactos\Contactos.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -163,6 +165,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Business\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj">
