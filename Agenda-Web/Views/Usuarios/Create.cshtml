@@ -1,0 +1,92 @@
+﻿@model Shared.DTOs.UsuarioDTO
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container d-flex justify-content-center px-4">
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong><i class="bi bi-exclamation-triangle-fill"></i> Errores de validacion:</strong><br />
+            @Html.Raw(TempData["error"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card p-4 register-card">
+        <div class="text-center mb-4">
+            <i class="bi bi-person-plus icon-rh"></i>
+            <h3 class="mt-2 fw-bold text-dark">Nuevo Usuario</h3>
+            <p class="text-muted small">Complete los datos para registrar un nuevo usuario</p>
+        </div>
+
+
+        @using (Html.BeginForm("CreatePost", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body p-0">
+                <div class="row mb-3 g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombres(s)</label>
+                        <input type="text" name="Nombre" class="form-control" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Apellido Paterno</label>
+                        <input type="text" name="ApellidoPaterno" class="form-control" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Apellido Meterno</label>
+                        <input type="text" name="ApellidoMaterno" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="row mb-3 g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-envelope text-muted"></i></span>
+                            <input type="email" name="CorreoElectronico" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre de Usuario</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-person text-muted"></i></span>
+                            <input type="text" name="NombreUsuario" class="form-control" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3 g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-lock text-muted"></i></span>
+                            <input type="password" name="Contrasena" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Verificar Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white"><i class="bi bi-check-circle text-muted"></i></span>
+                            <input type="password" name="RepetirContrasena" class="form-control" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Fotografia de Perfil</label>
+                    <input type="file" name="ArchivoImagen" class="form-control" accept="image/*" />
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="@Url.Action("Index", "Usuarios")" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Regresar</a>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-check2"></i> Crear</button>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
