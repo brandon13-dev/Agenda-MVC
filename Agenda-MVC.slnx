@@ -1,17 +1,17 @@
 <Solution>
   <Folder Name="/1.Web/">
-    <Project Path="Agenda-Web/Agenda-Web.csproj" />
+    <Project Path="Agenda-Web/Agenda-Web.csproj" Id="caee9458-906a-47c2-8329-623cdb5a0235" />
   </Folder>
   <Folder Name="/2.Business/">
-    <Project Path="Business/Business.csproj" />
+    <Project Path="Business/Business.csproj" Id="a637fb97-9d01-4ae8-ae25-24924f1ea991" />
   </Folder>
   <Folder Name="/3.Data/">
-    <Project Path="Data/Data.csproj" />
+    <Project Path="Data/Data.csproj" Id="76b9e4a4-5493-4a0c-a54e-325d839faadd" />
   </Folder>
   <Folder Name="/4.Entity/">
-    <Project Path="Entity/Entity.csproj" />
+    <Project Path="Entity/Entity.csproj" Id="7587ca68-0af5-4955-85b6-aa6d4f1b0a4c" />
   </Folder>
   <Folder Name="/5.Shared/">
-    <Project Path="Shared/Shared.csproj" />
+    <Project Path="Shared/Shared.csproj" Id="b921ba59-c238-4c31-86cd-904447899f07" />
   </Folder>
 </Solution>
