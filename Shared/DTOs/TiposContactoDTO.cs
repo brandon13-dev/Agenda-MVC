@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.DTOs
 {
-    public class TiposContacto
+    public class TiposContactoDTO
     {
         public int TipoContactoId { get; set; }
         public string Descripcion { get; set; }
