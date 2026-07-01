@@ -1,0 +1,77 @@
+# ============================================
+# CONFIGURACIÓN CON CREDENCIALES
+# ============================================
+
+# Ignorar Web.config en el proyecto MVC
+Agenda-Web/Web.config
+Agenda-Web/web.config
+
+# Ignorar App.config en TODOS los proyectos
+**/App.config
+**/app.config
+!Data/App.config
+
+# Ignorar archivos de configuración local
+*.local.config
+*.local
+
+# ============================================
+# VISUAL STUDIO
+# ============================================
+
+# Archivos de usuario y configuración personal
+*.user
+*.suo
+*.slnLaunch.user      # Configuración personal de inicio
+*.vspscc
+*.vssscc
+*.sln.docstates
+
+# Carpeta .vs (configuración local del IDE)
+.vs/
+
+# ============================================
+# COMPILACIÓN Y DEPURACIÓN
+# ============================================
+
+# Carpetas de compilación
+bin/
+obj/
+Debug/
+Release/
+publish/              # Publicación de la aplicación
+
+# ============================================
+# PAQUETES NUGET
+# ============================================
+
+packages/
+*.nupkg              # Paquetes NuGet comprimidos
+
+# ============================================
+# OTROS ARCHIVOS
+# ============================================
+
+# Archivos temporales
+*.tmp
+*.log
+*.cache
+
+# Archivos de respaldo
+*.bak
+*.backup
+
+# Archivos de sistema
+Thumbs.db
+Desktop.ini
+
+# ============================================
+# HERRAMIENTAS DE DESARROLLO
+# ============================================
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AgendaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ContactoMedios">
+          <Key>
+            <PropertyRef Name="ContactoMedioId" />
+          </Key>
+          <Property Name="ContactoMedioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactoId" Type="int" Nullable="false" />
+          <Property Name="TipoContactoId" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="ContactoId" />
+          </Key>
+          <Property Name="ContactoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="100" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+          <Property Name="ExtensionImagen" Type="varchar" MaxLength="5" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposContacto">
+          <Key>
+            <PropertyRef Name="TipoContactoId" />
+          </Key>
+          <Property Name="TipoContactoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="100" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="100" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="256" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="256" />
+          <Property Name="ExtensionImagen" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK_ContactoMedios_Contactos">
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="1" />
+          <End Role="ContactoMedios" Type="Self.ContactoMedios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contactos">
+              <PropertyRef Name="ContactoId" />
+            </Principal>
+            <Dependent Role="ContactoMedios">
+              <PropertyRef Name="ContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactoMedios_TiposContacto">
+          <End Role="TiposContacto" Type="Self.TiposContacto" Multiplicity="1" />
+          <End Role="ContactoMedios" Type="Self.ContactoMedios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposContacto">
+              <PropertyRef Name="TipoContactoId" />
+            </Principal>
+            <Dependent Role="ContactoMedios">
+              <PropertyRef Name="TipoContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contactos_Ususarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgendaModelStoreContainer">
+          <EntitySet Name="ContactoMedios" EntityType="Self.ContactoMedios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposContacto" EntityType="Self.TiposContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ContactoMedios_Contactos" Association="Self.FK_ContactoMedios_Contactos">
+            <End Role="Contactos" EntitySet="Contactos" />
+            <End Role="ContactoMedios" EntitySet="ContactoMedios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactoMedios_TiposContacto" Association="Self.FK_ContactoMedios_TiposContacto">
+            <End Role="TiposContacto" EntitySet="TiposContacto" />
+            <End Role="ContactoMedios" EntitySet="ContactoMedios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contactos_Ususarios" Association="Self.FK_Contactos_Ususarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgendaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ContactoMedios">
+          <Key>
+            <PropertyRef Name="ContactoMedioId" />
+          </Key>
+          <Property Name="ContactoMedioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoContactoId" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contactos" Relationship="Self.FK_ContactoMedios_Contactos" FromRole="ContactoMedios" ToRole="Contactos" />
+          <NavigationProperty Name="TiposContacto" Relationship="Self.FK_ContactoMedios_TiposContacto" FromRole="ContactoMedios" ToRole="TiposContacto" />
+        </EntityType>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="ContactoId" />
+          </Key>
+          <Property Name="ContactoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExtensionImagen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ContactoMedios" Relationship="Self.FK_ContactoMedios_Contactos" FromRole="Contactos" ToRole="ContactoMedios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Contactos_Ususarios" FromRole="Contactos" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TiposContacto">
+          <Key>
+            <PropertyRef Name="TipoContactoId" />
+          </Key>
+          <Property Name="TipoContactoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ContactoMedios" Relationship="Self.FK_ContactoMedios_TiposContacto" FromRole="TiposContacto" ToRole="ContactoMedios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="ExtensionImagen" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contactos" Relationship="Self.FK_Contactos_Ususarios" FromRole="Usuarios" ToRole="Contactos" />
+        </EntityType>
+        <Association Name="FK_ContactoMedios_Contactos">
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="1" />
+          <End Role="ContactoMedios" Type="Self.ContactoMedios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contactos">
+              <PropertyRef Name="ContactoId" />
+            </Principal>
+            <Dependent Role="ContactoMedios">
+              <PropertyRef Name="ContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactoMedios_TiposContacto">
+          <End Role="TiposContacto" Type="Self.TiposContacto" Multiplicity="1" />
+          <End Role="ContactoMedios" Type="Self.ContactoMedios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposContacto">
+              <PropertyRef Name="TipoContactoId" />
+            </Principal>
+            <Dependent Role="ContactoMedios">
+              <PropertyRef Name="TipoContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contactos_Ususarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgendaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ContactoMedios" EntityType="Self.ContactoMedios" />
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" />
+          <EntitySet Name="TiposContacto" EntityType="Self.TiposContacto" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_ContactoMedios_Contactos" Association="Self.FK_ContactoMedios_Contactos">
+            <End Role="Contactos" EntitySet="Contactos" />
+            <End Role="ContactoMedios" EntitySet="ContactoMedios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactoMedios_TiposContacto" Association="Self.FK_ContactoMedios_TiposContacto">
+            <End Role="TiposContacto" EntitySet="TiposContacto" />
+            <End Role="ContactoMedios" EntitySet="ContactoMedios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contactos_Ususarios" Association="Self.FK_Contactos_Ususarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AgendaModelStoreContainer" CdmEntityContainer="AgendaEntities">
+          <EntitySetMapping Name="ContactoMedios">
+            <EntityTypeMapping TypeName="AgendaModel.ContactoMedios">
+              <MappingFragment StoreEntitySet="ContactoMedios">
+                <ScalarProperty Name="ContactoMedioId" ColumnName="ContactoMedioId" />
+                <ScalarProperty Name="ContactoId" ColumnName="ContactoId" />
+                <ScalarProperty Name="TipoContactoId" ColumnName="TipoContactoId" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contactos">
+            <EntityTypeMapping TypeName="AgendaModel.Contactos">
+              <MappingFragment StoreEntitySet="Contactos">
+                <ScalarProperty Name="ContactoId" ColumnName="ContactoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="ExtensionImagen" ColumnName="ExtensionImagen" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposContacto">
+            <EntityTypeMapping TypeName="AgendaModel.TiposContacto">
+              <MappingFragment StoreEntitySet="TiposContacto">
+                <ScalarProperty Name="TipoContactoId" ColumnName="TipoContactoId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="AgendaModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="ExtensionImagen" ColumnName="ExtensionImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
