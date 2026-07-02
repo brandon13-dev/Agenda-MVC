@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessContactos.cs" />
+    <Compile Include="BusinessLogin.cs" />
     <Compile Include="BusinessMediosContacto.cs" />
     <Compile Include="BusinessTiposContacto.cs" />
     <Compile Include="BusinessUsuarios.cs" />
