@@ -30,10 +30,10 @@ namespace Agenda_Web.Controllers
                 TempData["error"] = ex.Message;
                 return RedirectToAction("Login");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["error"] = "Ocurrio un error en el servidor";
-                return RedirectToAction("Error");
+                TempData["error"] = "Ocurrio un error en el servidor:" + ex;
+                return View("Error");
             }
         }
 
